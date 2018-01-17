@@ -89,6 +89,12 @@ jobs:
     passed: [deploy-review]
   - get: pal-tracker-artifacts
     passed: [deploy-review]
+  - put: production-deployment
+    params:
+      manifest: pal-tracker/manifest-production.yml
+      path: pal-tracker-artifacts/pal-tracker-*.jar
+      environment_variables:
+        WELCOME_MESSAGE: "Hello from the production environment"
   - task: migrate database
     file: pal-tracker/ci/migrateDatabase.yml
     params:
@@ -101,9 +107,3 @@ jobs:
       DATABASE_NAME: {{production-database-name}}
       DATABASE_USERNAME: {{production-database-username}}
       DATABASE_PASSWORD: {{production-database-password}}
-  - put: production-deployment
-    params:
-      manifest: pal-tracker/manifest-production.yml
-      path: pal-tracker-artifacts/pal-tracker-*.jar
-      environment_variables:
-        WELCOME_MESSAGE: "Hello from the production environment"
