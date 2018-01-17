@@ -2,4 +2,4 @@
 applications:
 - name: pal-tracker
   path: build/libs/pal-tracker.jar
-  host: jb-pal-tracker-production
+  host: jf-pal-tracker-production

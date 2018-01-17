@@ -64,6 +64,12 @@ jobs:
   - get: pal-tracker-artifacts
     trigger: true
     passed: [build]
+  - put: review-deployment
+    params:
+      manifest: pal-tracker/manifest-review.yml
+      path: pal-tracker-artifacts/pal-tracker-*.jar
+      environment_variables:
+        WELCOME_MESSAGE: "Hello from the review environment"
   - task: migrate database
     file: pal-tracker/ci/migrateDatabase.yml
     params:
@@ -76,12 +82,6 @@ jobs:
       DATABASE_NAME: {{review-database-name}}
       DATABASE_USERNAME: {{review-database-username}}
       DATABASE_PASSWORD: {{review-database-password}}
-  - put: review-deployment
-    params:
-      manifest: pal-tracker/manifest-review.yml
-      path: pal-tracker-artifacts/pal-tracker-*.jar
-      environment_variables:
-        WELCOME_MESSAGE: "Hello from the review environment"
 
 - name: deploy-production
   plan:
