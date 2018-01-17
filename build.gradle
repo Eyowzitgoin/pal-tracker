@@ -30,6 +30,7 @@ def testDbUrl = "jdbc:mysql://localhost:3306/tracker_test?user=tracker&useSSL=fa
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
         "SPRING_DATASOURCE_URL": testDbUrl,
+        "MANAGEMENT_SECURITY_ENABLED": false,
 ])
 
 flyway {
